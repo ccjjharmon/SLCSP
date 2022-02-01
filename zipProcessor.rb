@@ -1,6 +1,6 @@
 class ZipProcessor
   def getRateArea(zipcode)  
-	return "1"
+	return @zipcodes.select { |z| z.zipcode == zipcode }
   end    
   
   def readFrom(filename)  

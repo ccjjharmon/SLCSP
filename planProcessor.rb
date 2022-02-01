@@ -1,8 +1,8 @@
 class PlanProcessor  
-  def getByRateArea(ratearea)  
-    return nil
+  def getByRateArea(rateArea)      
+	return @plans.select { |p| p.rate_area == rateArea.rate_area && p.state == rateArea.state }
   end
-
+  
   def readFrom(filename)
   
     @plans = Array.new
