@@ -6,7 +6,10 @@ require "./sLCSP.rb"
 require "./stateRateArea.rb"
 
 zipProcessor = ZipProcessor.new()
+zipProcessor.readFrom("zips.csv")
+
 planProcessor = PlanProcessor.new()
+planProcessor.readFrom("plans.csv")
 	  
 zipcode = "23832"
 ratearea = StateRateArea.new()
