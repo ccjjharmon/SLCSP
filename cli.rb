@@ -11,15 +11,17 @@ zipProcessor.readFrom("zips.csv")
 planProcessor = PlanProcessor.new()
 planProcessor.readFrom("plans.csv")
 	  
-zipcode = "23832"
-ratearea = StateRateArea.new()
-ratearea.state = "VA"
-ratearea.rate_area = 3
+f = File.open("slcsp.csv", "r")
 
-plans = planProcessor.getByRateArea(ratearea)
-	
-value = "10.12"
+f.each_line { |line|
+  fields = line.split(',')  
+  zipcode = fields[0];
   
-puts zipcode + "," + value
-
-
+  ratearea = zipProcessor.getRateArea(zipcode)   
+  plans = planProcessor.getByRateArea(ratearea)
+  puts plans.count
+	
+  value = SLCSP.get(plans)
+    
+  puts zipcode + "," + value 
+}  
