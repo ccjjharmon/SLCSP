@@ -1,2 +1,1 @@
-# SLCSP
-Second Lowest Cost Silver Plan
+Refer to [COMMENTS.md](COMMENTS.md)
