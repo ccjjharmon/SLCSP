@@ -4,20 +4,19 @@ class PlanProcessor
   end
   
   def readFrom(filename)
-  
     @plans = Array.new
-	
     f = File.open(filename, "r")
-
     f.each_line { |line|
       fields = line.split(',')  
       p = Plan.new()	  
-	  p.plan_id = fields[0]
-	  p.state = fields[1]
-	  p.metal_level = fields[2]
-	  p.rate = fields[3]
-	  p.rate_area = fields[4]	  
-      @plans.push(p)
+	    p.plan_id = fields[0].to_s
+	    p.state = fields[1].to_s
+	    p.metal_level = fields[2].to_s
+	    p.rate = fields[3].to_f
+	    p.rate_area = fields[4]	  
+      if p.plan_id != "plan_id"
+        @plans.push(p)
+      end
     }  
   end
 end
