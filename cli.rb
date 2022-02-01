@@ -15,13 +15,15 @@ f = File.open("slcsp.csv", "r")
 
 f.each_line { |line|
   fields = line.split(',')  
-  zipcode = fields[0];
+  zipcode = fields[0].to_s;
+  value = "rate"
+
+  if zipcode != "zipcode"
   
-  ratearea = zipProcessor.getRateArea(zipcode)   
-  plans = planProcessor.getByRateArea(ratearea)
-  puts plans.count
-	
-  value = SLCSP.get(plans)
-    
-  puts zipcode + "," + value 
+    ratearea = zipProcessor.getRateArea(zipcode)   
+    plans = planProcessor.getByRateArea(ratearea)
+    value = SLCSP.Get(plans)
+  end
+
+  puts [zipcode, ",", value].map(&:to_s).join('')
 }  
