@@ -1,4 +1,8 @@
 class PlanProcessor  
+  def initialize()
+    @plans = Array.new
+  end
+  
   def getByRateArea(rateArea)      
     if rateArea == nil
       return nil
@@ -7,17 +11,20 @@ class PlanProcessor
     return list
   end
   
+  def add(p)
+    @plans.push(p)
+  end
+  
   def readFrom(filename)
-    @plans = Array.new
     f = File.open(filename, "r")
     f.each_line { |line|
       fields = line.split(',')  
       p = Plan.new()	  
-	    p.plan_id = fields[0].to_s
-	    p.state = fields[1].to_s
-	    p.metal_level = fields[2].to_s
-	    p.rate = fields[3].to_f
-	    p.rate_area = fields[4]	  
+	  p.plan_id = fields[0].to_s
+	  p.state = fields[1].to_s
+	  p.metal_level = fields[2].to_s
+	  p.rate = fields[3].to_f
+	  p.rate_area = fields[4]	  
       if p.plan_id != "plan_id"
         @plans.push(p)
       end

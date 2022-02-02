@@ -1,4 +1,8 @@
 class ZipProcessor
+  def initialize()
+    @zipcodes = Array.new
+  end
+  
   def getRateArea(zipcode)  
 	  list = @zipcodes.select { |z| z.zipcode.to_s == zipcode.to_s }
     if list == nil || list.count == 0
@@ -19,8 +23,11 @@ class ZipProcessor
     return sra
   end
   
+  def add(z)
+    @zipcodes.push(z)
+  end
+  
   def readFrom(filename)  
-    @zipcodes = Array.new
     f = File.open(filename, "r")
     f.each_line { |line|
       fields = line.split(',')  
